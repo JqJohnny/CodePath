@@ -67,4 +67,26 @@ def total_sales(ticket_sales):
 
 ticket_sales = {"Friday": 200, "Saturday": 1000, "Sunday": 800, "3-Day Pass": 2500}
 
-print(total_sales(ticket_sales)) 
+print(total_sales(ticket_sales))
+
+# Problem 8
+
+
+def num_popular_pairs(popularity_scores):
+    result = {}
+    for x in popularity_scores:
+        result[x] = result.get(x, 0) + 1
+    
+    total = 0
+    for x in result.values():
+        total += (x*(x-1))/2
+    return int(total)
+
+
+popularity_scores1 = [1, 2, 3, 1, 1, 3]
+popularity_scores2 = [1, 1, 1, 1]
+popularity_scores3 = [1, 2, 3]
+
+print(num_popular_pairs(popularity_scores1))
+print(num_popular_pairs(popularity_scores2))
+print(num_popular_pairs(popularity_scores3)) 
