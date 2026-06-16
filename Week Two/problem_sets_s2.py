@@ -66,14 +66,13 @@ def prioritize_observations(observed_species, priority_species):
 
     for animal in observed_species:
         animals[animal] = animals.get(animal, 0) + 1
-    
 
     for animal in priority_species:
         if animal in animals:
             for i in range(animals.get(animal)):
                 result.append(animal)
             animals.pop(animal)
-        
+
     for animal in animals:
         for i in range(animals.get(animal)):
             result.append(animal)
@@ -89,3 +88,4 @@ priority_species2 = ["cardinal", "sparrow", "bluejay"]
 
 print(prioritize_observations(observed_species1, priority_species1))
 print(prioritize_observations(observed_species2, priority_species2))
+
