@@ -65,9 +65,9 @@ print(alice.catchphrase)
 
 """
 Problem 9
-Understand: We need to add a greet player method.
-Input: Player name
-Output: Print statement.
+Understand:
+Input:
+Output:
 Constraints:
 """
 
@@ -85,3 +85,23 @@ print(tom_nook.value)
 print(tom_nook.next.value) 
 print(tommy.value) 
 print(tommy.next) 
+
+"""
+Problem 10
+Understand:
+Input:
+Output:
+Constraints:
+"""
+
+timmy = Node("Timmy")
+tom_nook.next = timmy
+timmy.next = tommy
+
+print("Problem 10")
+print(tom_nook.value)
+print(tom_nook.next.value)
+print(timmy.value)
+print(timmy.next.value)
+print(tommy.value)
+print(tommy.next)
