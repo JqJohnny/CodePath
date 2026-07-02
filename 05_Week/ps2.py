@@ -294,10 +294,10 @@ head2 = Node(8, Node(5, Node(6, Node(7))))
 
 """
 Problem 7
-Understand: 
-Plan:
-Input:
-Output:
+Understand: delete the node with the matching name from the linked list 
+Plan:go through the linked list starting at head, check if curr_val.value == item, if it is prev next equal to curr.next
+Input: head (node), item (str)
+Output: return the head of the list
 Constraints:
 """
 
@@ -314,7 +314,21 @@ def print_linked_list(head):
         current = current.next
 
 def delete_item(head, item):
-    pass
+
+    if head.value == item:
+        head = head.next
+        return head
+    
+    prev = head
+    curr = head.next
+
+    while curr:
+        if curr.value == item:
+            prev.next = curr.next # bypass current node
+            return head
+        curr = curr.next
+    return head
+
 
 slingshot = Node("Slingshot")
 peaches = Node("Peaches")
@@ -327,3 +341,32 @@ print_linked_list(delete_item(slingshot, "Peaches"))
 
 # Linked List: slingshot -> beetle
 print_linked_list(delete_item(slingshot, "Triceratops Torso"))
+
+"""
+Problem 8
+Understand: We want to find the last node, set it as the new head.
+Plan: Iterate the list, stop at the second to last node, outside the loop, 
+assign that node to the head and set the second to last node.next to None
+Input: 
+Output: 
+Constraints:
+"""
+
+def tail_to_head(head):
+    curr = head
+    while curr.next:
+        curr = curr.next
+
+    he
+
+
+daisy = Node("Daisy")
+mario = Node("Mario")
+toad = Node("Toad") 
+peach = Node("Peach")
+daisy.next = mario
+mario.next = toad
+toad.next = peach
+
+# Linked List: Daisy -> Mario -> Toad -> Peach
+print_linked_list(tail_to_head(daisy))
