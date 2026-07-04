@@ -40,6 +40,7 @@ Output: Return a list with names of all friends in common
 Constraints:
 """
 
+
 class Villager:
     def __init__(self, name, species, catchphrase):
         self.name = name
@@ -53,6 +54,7 @@ class Villager:
             if friend in new_contact.friends:
                 result.append(friend.name)
         return result
+
 
 bob = Villager("Bob", "Cat", "pthhhpth")
 marshal = Villager("Marshal", "Squirrel", "sulky")
@@ -68,7 +70,7 @@ marshal.friends = [raymond, ankha, fauna]
 ankha.friends = [marshal]
 # print(bob.get_mutuals(ankha))
 
-'''
+"""
 Problem 2
 
 A linked list is a data structure that, similar to a normal list or array, allows us to store pieces of data sequentially. The key difference is how the elements are stored in memory.
@@ -111,12 +113,14 @@ Plan: Start from the head node, print each node sequentially until reaching the 
 Input: linked list head
 Output: Print of the linked list starting from the head
 Constraints: List could be empty
-'''
+"""
+
 
 class Node:
     def __init__(self, value, next=None):
         self.value = value
         self.next = next
+
 
 # For testing
 def print_linked_list(head):
@@ -124,6 +128,7 @@ def print_linked_list(head):
     while current:
         print(current.value, end=" -> " if current.next else "\n")
         current = current.next
+
 
 kk_slider = Node("K.K. Slider")
 harriet = Node("Harriet")
@@ -145,10 +150,12 @@ Output: return the new node
 Constraints:
 """
 
+
 class Node:
     def __init__(self, value, next=None):
         self.value = value
         self.next = next
+
 
 # For testing
 def print_linked_list(head):
@@ -157,10 +164,12 @@ def print_linked_list(head):
         print(current.value, end=" -> " if current.next else "\n")
         current = current.next
 
+
 def add_first(head, task):
     new_task = Node(task)
     new_task.next = head
     return new_task
+
 
 task_1 = Node("shake tree")
 task_2 = Node("dig fossils")
@@ -180,10 +189,12 @@ Output: head_node: Node[int]
 Constraints: 
 """
 
+
 class Node:
     def __init__(self, value, next=None):
         self.value = value
         self.next = next
+
 
 # For testing
 def print_linked_list(head):
@@ -192,12 +203,14 @@ def print_linked_list(head):
         print(current.value, end=" -> " if current.next else "\n")
         current = current.next
 
+
 def halve_list(head):
     curr = head
     while curr:
         curr.value = curr.value / 2
         curr = curr.next
     return head
+
 
 # Example Usage
 node_one = Node(5)
@@ -219,10 +232,12 @@ Output: Head of modified list
 Constraints: If the list is only one node
 """
 
+
 class Node:
     def __init__(self, value, next=None):
         self.value = value
         self.next = next
+
 
 # For testing
 def print_linked_list(head):
@@ -231,16 +246,18 @@ def print_linked_list(head):
         print(current.value, end=" -> " if current.next else "\n")
         current = current.next
 
+
 def delete_tail(head):
     node = head
     if node.next is None:
         return head
-    
-    while node.next.next != None: # 1 off
+
+    while node.next.next != None:  # 1 off
         node = node.next
 
     node.next = None
     return head
+
 
 butterfly = Node("Common Butterfly")
 ladybug = Node("Ladybug")
@@ -260,10 +277,12 @@ Output: Minimum value of the linked list
 Constraints: List could be empty -> None, List only have one value -> return that value
 """
 
+
 class Node:
     def __init__(self, value, next=None):
         self.value = value
         self.next = next
+
 
 # For testing
 def print_linked_list(head):
@@ -272,16 +291,18 @@ def print_linked_list(head):
         print(current.value, end=" -> " if current.next else "\n")
         current = current.next
 
+
 def find_min(head):
-    current_minimum = float('inf')
+    current_minimum = float("inf")
     current_node = head
     while current_node:
         if current_node.value < current_minimum:
             current_minimum = current_node.value
-            
+
         current_node = current_node.next
-        
+
     return current_minimum
+
 
 head1 = Node(5, Node(6, Node(7, Node(8))))
 head2 = Node(8, Node(5, Node(6, Node(7))))
@@ -301,10 +322,12 @@ Output: return the head of the list
 Constraints:
 """
 
+
 class Node:
     def __init__(self, value, next=None):
         self.value = value
         self.next = next
+
 
 # For testing
 def print_linked_list(head):
@@ -313,18 +336,19 @@ def print_linked_list(head):
         print(current.value, end=" -> " if current.next else "\n")
         current = current.next
 
+
 def delete_item(head, item):
 
     if head.value == item:
         head = head.next
         return head
-    
+
     prev = head
     curr = head.next
 
     while curr:
         if curr.value == item:
-            prev.next = curr.next # bypass current node
+            prev.next = curr.next  # bypass current node
             return head
         curr = curr.next
     return head
@@ -352,17 +376,16 @@ Output:
 Constraints:
 """
 
+
 def tail_to_head(head):
     curr = head
     while curr.next:
         curr = curr.next
 
-    he
-
 
 daisy = Node("Daisy")
 mario = Node("Mario")
-toad = Node("Toad") 
+toad = Node("Toad")
 peach = Node("Peach")
 daisy.next = mario
 mario.next = toad
