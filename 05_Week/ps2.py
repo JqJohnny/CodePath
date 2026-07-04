@@ -252,7 +252,7 @@ def delete_tail(head):
     if node.next is None:
         return head
 
-    while node.next.next != None:  # 1 off
+    while node.next.next is not None:  # 1 off
         node = node.next
 
     node.next = None
