@@ -7,10 +7,12 @@ Return the head of the merged linked list.
 
 """
 
+
 class Node:
     def __init__(self, val):
         self.val = val
         self.next = None
+
 
 def build_list(values):
     if not values:
@@ -22,6 +24,7 @@ def build_list(values):
         current = current.next
     return head
 
+
 def print_list(head):
     result = []
     while head:
@@ -29,19 +32,9 @@ def print_list(head):
         head = head.next
     return " -> ".join(result) if result else "Empty"
 
+
 l1 = build_list([1, 3, 5])
 l2 = build_list([2, 4, 6])
 
-head = l1
-l3 = []
-while l1:
-    l3.append(l1)
-    l1 = l1.next
-    if l2.next:
-        l3.append(l2)
-        l2 = l2.next
-
-
-print_list(l3)
 
 # Expected: 1 -> 2 -> 3 -> 4 -> 5 -> 6
