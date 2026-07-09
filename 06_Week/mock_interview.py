@@ -33,8 +33,30 @@ def print_list(head):
     return " -> ".join(result) if result else "Empty"
 
 
+def merge_list(list1, list2):
+    head = curr = Node(0)
+
+    while list1 and list2:
+        if list1.val < list2.val:
+            curr.next = list1
+            list1 = list1.next
+        else:
+            curr.next = list2
+            list2 = list2.next
+        curr = curr.next
+
+    if list1:
+        curr.next = list1
+    elif list2:
+        curr.next = list2
+
+    return head.next
+
+
 l1 = build_list([1, 3, 5])
 l2 = build_list([2, 4, 6])
+
+print(print_list(merge_list(l1, l2)))
 
 
 # Expected: 1 -> 2 -> 3 -> 4 -> 5 -> 6
