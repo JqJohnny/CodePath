@@ -63,21 +63,21 @@ Space Complexity: O(n)
 """
 
 
-def sum_stones(stones):
-    def recurse(suits, index):
-        if index==len(suits):
-            return 0
-
-        return recurse(suits, index + 1) + suits[index]
-        
-    return recurse(stones, 0)
-
-
 # def sum_stones(stones):
-#     if not stones:
-#         return 0
+#     def recurse(suits, index):
+#         if index==len(suits):
+#             return 0
+
+#         return recurse(suits, index + 1) + suits[index]
+        
+#     return recurse(stones, 0)
+
+
+def sum_stones(stones):
+    if not stones:
+        return 0
     
-#     return stones[0] + sum_stones(stones[1:])
+    return stones[0] + sum_stones(stones[1:])
 
 
 print(sum_stones([5, 10, 15, 20, 25, 30]))
