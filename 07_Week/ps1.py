@@ -107,3 +107,25 @@ def count_suits_recursive(suits):
 
 print(count_suits_iterative(["Mark I", "Mark I", "Mark III"]))
 print(count_suits_recursive(["Mark I", "Mark I", "Mark III"]))
+
+
+"""
+Problem 4
+Understand: Fibonacci sequence growth pattern. 
+Number is the sum of two preceding ones. Solve recursively
+Input: n - an integer
+Output: integer
+Time Complexity: O(n)
+Space Complexity: O(n)
+"""
+
+def fibonacci_growth(n):
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+
+    return fibonacci_growth(n-1) + fibonacci_growth(n-2)
+
+print(fibonacci_growth(5))
+print(fibonacci_growth(8))
