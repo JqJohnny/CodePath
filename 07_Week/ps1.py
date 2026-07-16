@@ -115,7 +115,7 @@ Understand: Fibonacci sequence growth pattern.
 Number is the sum of two preceding ones. Solve recursively
 Input: n - an integer
 Output: integer
-Time Complexity: O(n)
+Time Complexity: O(2^n)
 Space Complexity: O(n)
 """
 
