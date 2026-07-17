@@ -3,9 +3,9 @@ Problem 1
 Understand:
 Input: a list of sorted integers, an integer value to be searched for
 Output: True, if integer exists in list, else false
-Constraints: 
+Constraints:
 
-Plan: 
+Plan:
 1. if array empty return false
 2. Use binary search
 3. Define high variable, a low variable, calculate middle
@@ -16,8 +16,9 @@ Plan:
 8. return false
 """
 
+
 def find_cruise_length(cruise_lengths, vacation_length):
-    high = len(cruise_lengths) -1
+    high = len(cruise_lengths) - 1
     low = 0
     # High, low, mid are indicies
     while high >= low:
@@ -32,11 +33,11 @@ def find_cruise_length(cruise_lengths, vacation_length):
 
     # check when equal just int case
     return False
-            
 
-print(find_cruise_length([9, 10, 11, 12, 13, 14, 15], 13))
 
-print(find_cruise_length([8, 9, 12, 13, 13, 14, 15], 11))
+# print(find_cruise_length([9, 10, 11, 12, 13, 14, 15], 13))
+
+# print(find_cruise_length([8, 9, 12, 13, 13, 14, 15], 11))
 
 """
 Problem 2
@@ -55,12 +56,49 @@ otherwise return index
 
 """
 
+"""
+Using Step
 def find_cabin_index(cabins, preferred_deck):
-   def helper(index, step):
-       
-       return helper(index, step // 2)
+    def helper(index, step):
+        # Base Case
+        if step == 1:
+            # check left and right twice
+            if cabins[index] == preferred_deck:
+
+            return index
+
+        if cabins[index] > preferred_deck:
+            return helper(index + step // 2, step // 2)
+        elif cabins[index] < preferred_deck:
+            return helper(index - step // 2, step // 2)
+
+    return helper(len(cabins) // 2, len(cabins) // 4)
+"""
 
 
+def find_cabin_index(cabins, preferred_deck):
+    high = len(cabins) - 1
+    low = 0
+
+    def helper(high, low):
+        # Base Case
+        # return if < 0 > len
+        if low == high and cabins[low] != preferred_deck:
+            if preferred_deck > cabins[low]:
+                return low + 1
+            else:
+                return low - 1
+
+        mid = (high + low) // 2
+        if cabins[mid] == preferred_deck:
+            return mid
+        elif cabins[mid] > preferred_deck:
+            high = mid - 1
+        else:
+            low = mid + 1
+        return helper(high, low)
+
+    return helper(high, low)
 
 
 print(find_cabin_index([1, 3, 5, 6], 5))
