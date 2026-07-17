@@ -56,25 +56,6 @@ otherwise return index
 
 """
 
-"""
-Using Step
-def find_cabin_index(cabins, preferred_deck):
-    def helper(index, step):
-        # Base Case
-        if step == 1:
-            # check left and right twice
-            if cabins[index] == preferred_deck:
-
-            return index
-
-        if cabins[index] > preferred_deck:
-            return helper(index + step // 2, step // 2)
-        elif cabins[index] < preferred_deck:
-            return helper(index - step // 2, step // 2)
-
-    return helper(len(cabins) // 2, len(cabins) // 4)
-"""
-
 
 def find_cabin_index(cabins, preferred_deck):
     high = len(cabins) - 1
