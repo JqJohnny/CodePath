@@ -85,3 +85,41 @@ def find_cabin_index(cabins, preferred_deck):
 print(find_cabin_index([1, 3, 5, 6], 5))
 print(find_cabin_index([1, 3, 5, 6], 2))
 print(find_cabin_index([1, 3, 5, 6], 7))
+
+
+
+def search_range(nums, target):
+    # Find leftmost occurrence
+    left, right = 0, len(nums) - 1
+    leftMost = -1
+
+    while left <= right:
+        mid = (left + right) // 2
+
+        if nums[mid] == target:
+            leftMost = mid
+            right = mid - 1
+        elif nums[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+
+
+    # Find rightmost occurrence
+    left, right = 0, len(nums) - 1
+    rightMost = -1
+
+    while left <= right:
+        mid = (left + right) // 2
+
+        if nums[mid] == target:
+            rightMost = mid
+            left = mid + 1
+        elif nums[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+
+    return [leftMost, rightMost]
+
+print(search_range([0,1,3,4,8,8,8,8], 8))
