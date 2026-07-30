@@ -1,22 +1,21 @@
-@ -1,173 +0,0 @@
 # Problem 2
 
 # Understand:
-# Input: 
-# Output: 
-# Plan: 
+# Input:
+# Output:
+# Plan:
 
 
+from collections import deque
 
-from collections import deque 
 
 # Tree Node class
 class TreeNode:
-  def __init__(self, value, key=None, left=None, right=None):
-      self.key = key
-      self.val = value
-      self.left = left
-      self.right = right
+    def __init__(self, value, key=None, left=None, right=None):
+        self.key = key
+        self.val = value
+        self.left = left
+        self.right = right
 
 
 def print_tree(root):
@@ -36,35 +35,38 @@ def print_tree(root):
         result.pop()
     print(result)
 
+
 def build_tree(values):
-  if not values:
-      return None
+    if not values:
+        return None
 
-  def get_key_value(item):
-      if isinstance(item, tuple):
-          return item[0], item[1]
-      else:
-          return None, item
+    def get_key_value(item):
+        if isinstance(item, tuple):
+            return item[0], item[1]
+        else:
+            return None, item
 
-  key, value = get_key_value(values[0])
-  root = TreeNode(value, key)
-  queue = deque([root])
-  index = 1
+    key, value = get_key_value(values[0])
+    root = TreeNode(value, key)
+    queue = deque([root])
+    index = 1
 
-  while queue:
-      node = queue.popleft()
-      if index < len(values) and values[index] is not None:
-          left_key, left_value = get_key_value(values[index])
-          node.left = TreeNode(left_value, left_key)
-          queue.append(node.left)
-      index += 1
-      if index < len(values) and values[index] is not None:
-          right_key, right_value = get_key_value(values[index])
-          node.right = TreeNode(right_value, right_key)
-          queue.append(node.right)
-      index += 1
+    while queue:
+        node = queue.popleft()
+        if index < len(values) and values[index] is not None:
+            left_key, left_value = get_key_value(values[index])
+            node.left = TreeNode(left_value, left_key)
+            queue.append(node.left)
+        index += 1
+        if index < len(values) and values[index] is not None:
+            right_key, right_value = get_key_value(values[index])
+            node.right = TreeNode(right_value, right_key)
+            queue.append(node.right)
+        index += 1
 
-  return root
+    return root
+
+
 # Problem 1
 
 # Understand: Merge the two trees, and sum up any overlap
@@ -81,6 +83,7 @@ def build_tree(values):
 #         self.val = quantity
 #         self.left = left
 #         self.right = right
+
 
 def merge_orders(order1, order2):
     if order1 is None and order2 is None:
@@ -100,8 +103,6 @@ def merge_orders(order1, order2):
     order1.right = merge_orders(order1.right, order2.right)
 
     return order1
-    
-
 
 
 # Using build_tree() function included at top of page
@@ -113,7 +114,6 @@ order2 = build_tree(cookies2)
 # Using print_tree() function included at top of page
 
 
-
 # Problem 2
 
 # Understand: We are given a root, print a list of flavors by level
@@ -123,11 +123,13 @@ order2 = build_tree(cookies2)
 # Add vanilla, iterate until queue empty
 # [Vanilla]
 
-class Puff():
-     def __init__(self, flavor, left=None, right=None):
+
+class Puff:
+    def __init__(self, flavor, left=None, right=None):
         self.val = flavor
         self.left = left
         self.right = right
+
 
 def print_design(design):
     result = []
@@ -135,22 +137,22 @@ def print_design(design):
     while queue:
         curr = queue.popleft()
         result.append(curr.val)
-        
+
         if curr.left:
             queue.append(curr.left)
         if curr.right:
             queue.append(curr.right)
-    
+
     return result
-    
-croquembouche = Puff("Vanilla", 
-                    Puff("Chocolate", Puff("Vanilla"), Puff("Matcha")), 
-                    Puff("Strawberry"))
+
+
+croquembouche = Puff(
+    "Vanilla", Puff("Chocolate", Puff("Vanilla"), Puff("Matcha")), Puff("Strawberry")
+)
 
 print(print_design(croquembouche))
 
 # Space and Time complexity: O(N)
-
 
 
 # Problem 3
@@ -158,16 +160,26 @@ print(print_design(croquembouche))
 # Understand: given a root of tree, return height of tree
 # Input: root of binary tree (cake)
 # Output: maximum number of tiers in cake (height)
-# Plan: 
-# start from root 
-# if root is none: return 0 
-# return 1 + max () 
+# Plan:
+# start from root
+# if root is none: return 0
+# return 1 + max ()
+
 
 def max_tiers(cake):
     pass
 
+
 # Using build_tree() function included at top of page
-cake_sections = ["Chocolate", "Vanilla", "Strawberry", None, None, "Chocolate", "Coffee"]
+cake_sections = [
+    "Chocolate",
+    "Vanilla",
+    "Strawberry",
+    None,
+    None,
+    "Chocolate",
+    "Coffee",
+]
 cake = build_tree(cake_sections)
 
 print(max_tiers(cake))
