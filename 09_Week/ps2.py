@@ -1,4 +1,3 @@
-
 from collections import deque
 
 
@@ -113,6 +112,7 @@ return arrays
 
 """
 
+
 def zigzag(root):
     if not root:
         return []
@@ -123,7 +123,7 @@ def zigzag(root):
 
     while queue or stack:
         values = []
-        if counter % 2 == 0: # use queue
+        if counter % 2 == 0:  # use queue
             while queue:
                 curr = queue.popleft()
                 if curr.left:
@@ -133,7 +133,7 @@ def zigzag(root):
                 values.append(curr.val)
             arrays.append(values)
 
-        else: # use stack
+        else:  # use stack
             while stack:
                 curr = stack.pop()
                 if curr.left:
@@ -158,9 +158,9 @@ def zigzag_tree(root, level, result):
         result[level].append(root.val)
     else:
         result[level].appendleft(root.val)
-    
-    zigzag_tree(root.left, level+1, result)
-    zigzag_tree(root.right, level+1, result)
+
+    zigzag_tree(root.left, level + 1, result)
+    zigzag_tree(root.right, level + 1, result)
 
     return [list(d) for d in result]
 
@@ -173,6 +173,53 @@ print(zigzag(val_tree))
 tree = [3, 9, 20, None, None, 15, 7]
 tree_built = build_tree(tree)
 
-#print(zigzag_tree(val_tree, 0, result=[]))
+# print(zigzag_tree(val_tree, 0, result=[]))
 
 print(zigzag(tree_built))
+
+"""
+Problem 1
+Understand: A balanced display is a binary tree in which the difference in 
+the height of the two subtrees of every node never exceeds one.
+Input: root of binary tree
+Output: Boolean, True if balanced, false otherwise
+Constraints: Empty Tree
+"""
+
+
+def is_balanced(display):
+    if display is None:
+        return True
+
+    def height(node):
+        if node is None:
+            return 0
+        return max(height(node.left), height(node.right)) + 1
+
+    left = height(display.left)
+    right = height(display.right)
+
+    return abs(left - right) <= 1 and is_balanced(display.left) and is_balanced(display.right)
+
+        
+
+
+baked_goods = ["🎂", "🥮", "🍩", None, None, "🥖", "🧁"]
+display1 = build_tree(baked_goods)
+
+"""
+          🥖
+         /  \
+       🧁    🧁
+       /       \"
+      🍪       🍪
+     /           \
+    🥐           🥐  
+
+"""
+baked_goods = ["🥖", "🧁", "🧁", "🍪", None, None, "🍪", "🥐", None, None, "🥐"]
+display2 = build_tree(baked_goods)
+
+print(is_balanced(display1)) 
+print(is_balanced(display2))
+
