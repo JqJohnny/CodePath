@@ -1,11 +1,3 @@
-# Problem 2
-
-# Understand:
-# Input:
-# Output:
-# Plan:
-
-
 from collections import deque
 
 
