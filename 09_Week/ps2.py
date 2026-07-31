@@ -199,9 +199,11 @@ def is_balanced(display):
     left = height(display.left)
     right = height(display.right)
 
-    return abs(left - right) <= 1 and is_balanced(display.left) and is_balanced(display.right)
-
-        
+    return (
+        abs(left - right) <= 1
+        and is_balanced(display.left)
+        and is_balanced(display.right)
+    )
 
 
 baked_goods = ["🎂", "🥮", "🍩", None, None, "🥖", "🧁"]
@@ -220,7 +222,7 @@ display1 = build_tree(baked_goods)
 baked_goods = ["🥖", "🧁", "🧁", "🍪", None, None, "🍪", "🥐", None, None, "🥐"]
 display2 = build_tree(baked_goods)
 
-print(is_balanced(display1)) 
+print(is_balanced(display1))
 print(is_balanced(display2))
 
 
@@ -232,12 +234,13 @@ Output: List of sums
 Constraints: Empty tree
 Plan: Use a queue and store by day additionally track levels
 """
+
+
 def sum_each_days_orders(orders):
     result = []
     queue = [orders]
     currQueue = []
 
-    
     while queue or currQueue:
         total = 0
         if queue:
@@ -262,10 +265,56 @@ def sum_each_days_orders(orders):
     return result
 
 
-
-    
-
 order_sizes = [4, 2, 6, 1, 3]
 orders = build_tree(order_sizes)
 
 print(sum_each_days_orders(orders))
+
+
+"""
+Problem 3
+Understand: We are looking for the absolute differences in each row of the highest and lowest
+Input: Root of binary tree
+Output: List of absolute differences between the highest and lowest sweetness level in each row
+Constraints:
+"""
+
+def sweet_difference(chocolates):
+    result = []
+    stack1 = [chocolates]
+
+    while stack1:
+        stack2 = []
+        minimum = stack1[0].val
+        maximum = stack1[0].val
+        while stack1:
+            curr = stack1.pop()
+            if curr.left:
+                stack2.append(curr.left)
+            if curr.right:
+                stack2.append(curr.right)
+            minimum = min(minimum, curr.val)
+            maximum = max(maximum, curr.val)
+        result.append(abs(maximum-minimum))
+        stack1 = stack2
+
+    return result
+
+    
+
+sweetness_levels1 = [3, 9, 20, None, None, 15, 7]
+chocolate_box1 = build_tree(sweetness_levels1)
+
+"""
+    1
+   / \
+  2   3
+ / \'   \
+4   5   6
+
+"""
+sweetness_levels2 = [1, 2, 3, 4, 5, None, 6]
+chocolate_box2 = build_tree(sweetness_levels2)
+
+print(sweet_difference(chocolate_box1))  
+print(sweet_difference(chocolate_box2))  
