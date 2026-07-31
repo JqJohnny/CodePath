@@ -223,3 +223,49 @@ display2 = build_tree(baked_goods)
 print(is_balanced(display1)) 
 print(is_balanced(display2))
 
+
+"""
+Problem 2
+Understand: Storing customer order in binary tree where each node represents a customer order
+Input: Root of binary tree
+Output: List of sums
+Constraints: Empty tree
+Plan: Use a queue and store by day additionally track levels
+"""
+def sum_each_days_orders(orders):
+    result = []
+    queue = [orders]
+    currQueue = []
+
+    
+    while queue or currQueue:
+        total = 0
+        if queue:
+            while queue:
+                curr = queue.pop()
+                if curr.left:
+                    currQueue.append(curr.left)
+                if curr.right:
+                    currQueue.append(curr.right)
+                total += curr.val
+        else:
+            while currQueue:
+                curr = currQueue.pop()
+                if curr.left:
+                    queue.append(curr.left)
+                if curr.right:
+                    queue.append(curr.right)
+                total += curr.val
+
+        result.append(total)
+
+    return result
+
+
+
+    
+
+order_sizes = [4, 2, 6, 1, 3]
+orders = build_tree(order_sizes)
+
+print(sum_each_days_orders(orders))
