@@ -122,8 +122,8 @@ def zigzag(root):
     counter = 0
 
     while queue or stack:
+        values = []
         if counter % 2 == 0: # use queue
-            values = []
             while queue:
                 curr = queue.popleft()
                 if curr.left:
@@ -134,7 +134,6 @@ def zigzag(root):
             arrays.append(values)
 
         else: # use stack
-            values = []
             while stack:
                 curr = stack.pop()
                 if curr.left:
@@ -169,11 +168,11 @@ def zigzag_tree(root, level, result):
 tree_with_just_values = [1, 2, 3, 4, None, 5, 6]
 val_tree = build_tree(tree_with_just_values)
 
-#print(zigzag(val_tree))
+print(zigzag(val_tree))
 
 tree = [3, 9, 20, None, None, 15, 7]
 tree_built = build_tree(tree)
 
-print(zigzag_tree(val_tree, 0, result=[]))
+#print(zigzag_tree(val_tree, 0, result=[]))
 
-#print(zigzag(tree_built))
+print(zigzag(tree_built))
