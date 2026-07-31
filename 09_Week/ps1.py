@@ -178,3 +178,57 @@ cake_sections = [
 cake = build_tree(cake_sections)
 
 print(max_tiers(cake))
+
+
+"""
+Problem 4
+Understand: Same as last problem but use breadth first search
+"""
+
+
+def max_tiers(cake):
+    if cake is None:
+        return 0
+
+    queue = deque([(cake, 1)])
+    max_depth = 0
+
+    while queue:
+        node, depth = queue.popleft()
+        max_depth = max(max_depth, depth)
+
+        if node.left:
+            queue.append((node.left, depth + 1))
+        if node.right:
+            queue.append((node.right, depth + 1))
+
+    return max_depth
+
+
+"""
+Problem 5
+Understand:
+Input:
+Output:
+Constraints:
+"""
+
+
+def can_fulfill_order(inventory, order_size):
+    if inventory is None:
+        return False
+
+    if inventory.left is None and inventory.right is None:
+        return inventory.val == order_size
+
+
+    return can_fulfill_order(
+        inventory.left, order_size - inventory.val
+    ) or can_fulfill_order(inventory.right, order_size - inventory.val)
+
+
+quantities = [5, 4, 8, 11, None, 13, 4, 7, 2, None, None, None, 1]
+baked_goods = build_tree(quantities)
+
+print(can_fulfill_order(baked_goods, 22))
+print(can_fulfill_order(baked_goods, 2))
