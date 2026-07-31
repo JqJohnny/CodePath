@@ -317,4 +317,66 @@ sweetness_levels2 = [1, 2, 3, 4, 5, None, 6]
 chocolate_box2 = build_tree(sweetness_levels2)
 
 print(sweet_difference(chocolate_box1))  
-print(sweet_difference(chocolate_box2))  
+print(sweet_difference(chocolate_box2))
+
+
+"""
+Problem 4
+Understand: Customer orders are a binary tree. Write a function that returns a boolean
+if the tree represented by order1 can be rearranged to match the tree represented by order2 by doing
+any number of swaps in order1 left and right branches
+Input: Root of two binary trees, order 1 and order 2
+Output: Boolean
+Constraints: Empty tree or mismatching size, if each are unique, we can use a set
+otherwise list
+
+Plan: Do breadth-first search. if a row matches the other row we can move on. if it cant,
+then return false
+
+"""
+
+def can_rearrange_orders(order1, order2):
+    result1 = []
+    stack = [order1]
+
+    while stack:
+        next_level = []
+        result = []
+        while stack:
+            curr = stack.pop()
+            if curr.left:
+                next_level.append(curr.left)
+            if curr.right:
+                next_level.append(curr.right)
+            result.append(curr.val)
+        result1.append(result)
+        stack = next_level
+
+
+    result2 = []
+    stack = [order2]
+
+    while stack:
+        next_level = []
+        result = []
+        while stack:
+            curr = stack.pop()
+            if curr.left:
+                next_level.append(curr.left)
+            if curr.right:
+                next_level.append(curr.right)
+            result.append(curr.val)
+        result2.append(result)
+        stack = next_level
+
+    result1 = [sorted(x) for x in result1]
+    result2 = [sorted(x) for x in result2]
+    return result1 == result2
+
+flavors1 = ["Red Velvet", "Vanilla", "Lemon", "Ube", "Almond", "Chai", "Carrot", 
+            None, None, None, None, "Chai", "Maple", None, "Smore"]
+flavors2 = ["Red Velvet", "Lemon", "Vanilla", "Carrot", "Chai", "Almond", "Ube", "Smore", None, "Maple", "Chai"]
+order1 = build_tree(flavors1)
+order2 = build_tree(flavors2)
+
+print(can_rearrange_orders(order1, order2))
