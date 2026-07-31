@@ -159,7 +159,10 @@ print(print_design(croquembouche))
 
 
 def max_tiers(cake):
-    pass
+    if cake is None:
+        return 0
+
+    return 1 + max(max_tiers(cake.left), max_tiers(cake.right))
 
 
 # Using build_tree() function included at top of page
