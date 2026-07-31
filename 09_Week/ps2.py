@@ -148,16 +148,32 @@ def zigzag(root):
     return arrays
 
 
+def zigzag_tree(root, level, result):
+    if root is None:
+        return result
+
+    if len(result) <= level:
+        result.append(deque())
+
+    if level % 2 == 0:
+        result[level].append(root.val)
+    else:
+        result[level].appendleft(root.val)
+    
+    zigzag_tree(root.left, level+1, result)
+    zigzag_tree(root.right, level+1, result)
+
+    return [list(d) for d in result]
+
+
 tree_with_just_values = [1, 2, 3, 4, None, 5, 6]
 val_tree = build_tree(tree_with_just_values)
 
-print(zigzag(val_tree))
+#print(zigzag(val_tree))
 
 tree = [3, 9, 20, None, None, 15, 7]
 tree_built = build_tree(tree)
 
+print(zigzag_tree(val_tree, 0, result=[]))
 
-# It works
-#lets go
-#amazing!
-print(zigzag(tree_built))
+#print(zigzag(tree_built))
