@@ -380,3 +380,5 @@ order1 = build_tree(flavors1)
 order2 = build_tree(flavors2)
 
 print(can_rearrange_orders(order1, order2))
+
+test1 = [""]
