@@ -183,18 +183,18 @@ there also exists a flight from destination j to destination i. Return False oth
 
 
 def bidirectional_flights(flights):
-    for i in range(len(flights)):
-        for j in flights[i]:
-            if i not in flights[j]:
+    for i in range(len(flights)): # 0 to 4
+        for j in flights[i]: # flights[i] = [1, 2], j = 1
+            if i not in flights[j]: # 0 
                 return False
     return True
 
 
-# flights1 = [[1, 2], [0], [0, 3], [2]]
-# flights2 = [[1, 2], [], [0], [2]]
+flights1 = [[1, 2], [0], [0, 3], [2]]
+flights2 = [[1, 2], [], [0], [2]]
 
-# print(bidirectional_flights(flights1))
-# print(bidirectional_flights(flights2))
+print(bidirectional_flights(flights1))
+print(bidirectional_flights(flights2))
 
 
 """
