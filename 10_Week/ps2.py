@@ -132,31 +132,63 @@ print(can_rebook(flights2, 0, 2))
 from collections import deque
 
 
-def counting_flights(flights, i, j):
-    queue = deque([flights[i]])
-    visited = {flights[i]}
-    n = len(flights)
-    if i == j:
-        return 0
-    count = 0
-    while queue:
-        count += 1
-        level_size = len(queue)
-        for index in range(level_size):  # [0, 1, 0]
-            node = queue.popleft()
-            for k in range(n):
-                if flights[node][k] == 1 and k not in visited:  # True
-                    if k == j:
-                        return count
-                    visited.add()
-                nextlevel.append(flights[index])
-        queue.popleft()
-        # if stack is empty
-        stack = deque(nextLevel)
-    return -1
+# def counting_flights(flights, i, j):
+#     queue = deque([flights[i]])
+#     visited = {flights[i]}
+#     n = len(flights)
+#     if i == j:
+#         return 0
+#     count = 0
+#     while queue:
+#         count += 1
+#         level_size = len(queue)
+#         for index in range(level_size):  # [0, 1, 0]
+#             node = queue.popleft()
+#             for k in range(n):
+#                 if flights[node][k] == 1 and k not in visited:  # True
+#                     if k == j:
+#                         return count
+#                     visited.add()
+#                 nextlevel.append(flights[index])
+#         queue.popleft()
+#         # if stack is empty
+#         stack = deque(nextLevel)
+#     return -1
 
 
 # Example usage
+# flights = [
+#     [0, 1, 1, 0, 0],  # Airport 0
+#     [0, 0, 1, 0, 0],  # Airport 1
+#     [0, 0, 0, 1, 0],  # Airport 2
+#     [0, 0, 0, 0, 1],  # Airport 3
+#     [0, 0, 0, 0, 0],  # Airport 4
+# ]
+
+# print(counting_flights(flights, 0, 2))
+# print(counting_flights(flights, 0, 4))
+
+
+def counting_flights(flights, i, j):
+    queue = [flights[i]]
+    visited = set()
+    count = 0
+    while queue:
+        count += 1
+        nextlevel = []
+        while queue:
+            curr = queue.pop()
+            for index in range(len(curr)):
+                if curr[index]:
+                    if index == j:
+                        return count
+                    nextlevel.append(flights[index])
+        # if stack is empty
+        queue = nextlevel
+
+    return -1
+
+
 flights = [
     [0, 1, 1, 0, 0],  # Airport 0
     [0, 0, 1, 0, 0],  # Airport 1
@@ -167,26 +199,4 @@ flights = [
 
 print(counting_flights(flights, 0, 2))
 print(counting_flights(flights, 0, 4))
-
-
-from collections import deque
-
-
-def counting_flights(flights, i, j):
-    queue = deque([flights[i]])
-    n = len(flights)
-    if i == j:
-        return 0
-    count = 0
-    while queue:
-        count += 1
-        for index in range(len(queue[0])):  # [0, 1, 0]
-            if queue[0][index]:  # True
-                if index == j:
-                    return count
-                nextlevel.append(flights[index])
-        queue.popleft()
-        # if stack is empty
-        stack = deque(nextLevel)
-        count += 1
-    return -1
+print(counting_flights(flights, 4, 0))
