@@ -171,7 +171,6 @@ from collections import deque
 
 def counting_flights(flights, i, j):
     queue = [flights[i]]
-    visited = set()
     count = 0
     while queue:
         count += 1
