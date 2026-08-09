@@ -129,8 +129,6 @@ print(can_rebook(flights2, 0, 2))
 
 # E - Evaluate (time and space complexity?)
 
-from collections import deque
-
 
 # def counting_flights(flights, i, j):
 #     queue = deque([flights[i]])
