@@ -100,26 +100,33 @@ Frequency map
 """
 
 
-# O(2n) = O(n)
+# O(n) time, O(n) space
 def is_authentic_collection(art_pieces):
-    seen = set(range(1, len(art_pieces)))
-    duplicate = False
+    n = len(art_pieces) - 1
+    if n < 1:
+        return False
+
+    # counts[v] tracks how many times value v appears; index 0 is unused
+    counts = [0] * (n + 1)
     for art in art_pieces:
-        if art in seen:
-            seen.remove(art)
-        elif art == len(art_pieces) - 1 and duplicate == False:
-            duplicate = True
-        else:
+        if art < 1 or art > n:
+            return False
+        counts[art] += 1
+
+    for value in range(1, n):
+        if counts[value] != 1:
             return False
 
-    if duplicate and len(seen) == 0:
-        return True
+    return counts[n] == 2
+
 
 
 collection1 = [2, 1, 3]
-collection2 = [1, 3, 3, 2]  #
+collection2 = [1, 3, 3, 2]
 collection3 = [1, 1]
+collection4 = []
 
 print(is_authentic_collection(collection1))
 print(is_authentic_collection(collection2))
 print(is_authentic_collection(collection3))
+print(is_authentic_collection(collection4))
