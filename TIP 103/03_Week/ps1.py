@@ -134,31 +134,30 @@ E:
 
 def can_split_coffee(coffee, n):
     total = sum(coffee)
-    split = total / n # The amount each employee should have
-    if isinstance(split, float):
+    if total % n != 0:
         return False
+    split = total / n # The amount each employee should have
     quotas_completed = 0 # how many employees left to split batches amongst
 
-    coffee.sort()
-    coffee = coffee[:-1] # descending order
-
+    coffee.sort(reverse=True)
     if coffee[0] > split: # max number in batch is greater than split
         return False
     
     current_sum = 0
     index = 0
-    while quotas_completed < n and len(coffee) > 0:
-        if current_sum == split:
-            quotas_completed += 1
-            current_sum = 0
-            index = 0
-        
+    while quotas_completed < n and len(coffee) > 0:        
         if coffee[index] + current_sum <= split:
             current_sum += coffee[index]
             coffee.pop(index)
             index -= 1
          
         index += 1
+
+        if current_sum == split:
+            quotas_completed += 1
+            current_sum = 0
+            index = 0
+
     if quotas_completed == n:
         return True
 
