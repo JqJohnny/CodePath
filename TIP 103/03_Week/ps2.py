@@ -41,13 +41,7 @@ def blueprint_approval(blueprints):
 # print(blueprint_approval([3, 5, 2, 1, 4])) 
 # print(blueprint_approval([7, 4, 6, 2, 5]))
 
-"""
-Problem 2
-You are given an array floors representing the heights of different building floors.
-Your task is to design a skyscraper using these floors, where each floor must be placed on top of a floor with equal or greater height. 
-However, you can only start a new skyscraper when necessary, meaning when no more floors can be added to the current skyscraper according to the rules.
-
-Return the number of skyscrapers you can build using the given floors.
+TS/SCI w/Poly SP
 
 Example Output:
 
@@ -179,7 +173,7 @@ def min_swaps(s):
         current = max(current, total)
 
     current = (current//2)
-    if current // 2 > 1:
+    if current > 2:
         current -= 1
 
     return current
@@ -189,4 +183,5 @@ print(min_swaps("][]["))
 print(min_swaps("]]][[[")) # [[][]]]
 print(min_swaps("[]"))
 print(min_swaps("[]][]["))
+print(min_swaps("[[]]]["))
 
