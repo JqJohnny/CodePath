@@ -114,6 +114,35 @@ magnolia = TreeNode("Root",
 
 print(survey_tree(magnolia))
 
+"""
+Problem 3 - No helper function
+You have a large overgrown Magnolia tree that's in desperate need of some pruning. Before you can prune the tree, 
+you need to do a full survey of the tree to evaluate which sections need to be pruned.
+
+Given the root of a binary tree representing the magnolia, return a list of the values of each node 
+using a postorder traversal. In a postorder traversal, you explore the left subtree first, then the 
+right subtree, and finally the root. Postorder traversals are often used when deleting nodes from a tree.
+
+Evaluate the time and space complexity of your function. Define your variables and provide a 
+rationale for why you believe your solution has the stated time and space complexity. Assume 
+the input tree is balanced when calculating time and space complexity.
+
+"""
+def survey_tree(root):
+    if root is None: # leaf node
+        return [] # node.val
+    
+    left = survey_tree(root.left)
+    right = survey_tree(root.right)
+
+    return left + right + [root.val]            
+
+magnolia = TreeNode("Root", 
+                TreeNode("Node1", TreeNode("Leaf1")),
+                        TreeNode("Node2", TreeNode("Leaf2"), TreeNode("Leaf3")))
+
+print(survey_tree(magnolia))
+
 def sum_inventory(inventory):
   counting_sum = 0
   def post_order_traverse(node):
