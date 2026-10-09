@@ -218,7 +218,7 @@ root.left.right = TreeNode(2)
 root.right.left = TreeNode(10)
 root.right.right = TreeNode(2)
 
-print(calculate_yield(root))
+# print(calculate_yield(root))
 
 """
 Set1, #6
@@ -235,25 +235,32 @@ DFS pre-order implemetation
 REVIEW:
 EVALUATE: O(n) time; O(H) space
 """
-def get_most_specific(taxonomy):
-    lst = []
 
-    def DFS_preorder(root):
-        if root is None:
-            return 
-        if root.left is None and root.right is None:
-            lst.append(root.val)
-            return
+def get_most_specifics(taxonomy):
+    if taxonomy.left is None and taxonomy.right is None:
+        return [taxonomy.val]
+    
+    return get_most_specifics(taxonomy.left) + get_most_specifics(taxonomy.right)
 
-        # left traversal
-        DFS_preorder(root.left)
+# def get_most_specific(taxonomy):
+#     lst = []
 
-        # right traversal
-        DFS_preorder(root.right)
+#     def DFS_preorder(root):
+#         if root is None:
+#             return 
+#         if root.left is None and root.right is None:
+#             lst.append(root.val)
+#             return
 
-    DFS_preorder(taxonomy)
+#         # left traversal
+#         DFS_preorder(root.left)
 
-    return lst
+#         # right traversal
+#         DFS_preorder(root.right)
+
+#     DFS_preorder(taxonomy)
+
+#     return lst
     
 
 
@@ -273,7 +280,7 @@ plant_taxonomy = TreeNode("Plantae",
                                   TreeNode("Flowering", TreeNode("Gymnosperms"), 
                                           TreeNode("Angiosperms", TreeNode("Monocots"), TreeNode("Dicots"))))
 
-# print(get_most_specific(plant_taxonomy))
+print(get_most_specifics(plant_taxonomy))
 
 """
 Set1, #7
@@ -353,11 +360,11 @@ root2 = TreeNode(1, TreeNode(2), TreeNode(3))
 root3 = TreeNode(1, TreeNode(2))
 root4 = TreeNode(1, None, TreeNode(2))
 
-print(is_identical(root1, root2))
-print(is_identical(root3, root4))
+# print(is_identical(root1, root2))
+# print(is_identical(root3, root4))
 
-root5 = TreeNode(1, TreeNode(2))
-root6 = TreeNode(1, None, TreeNode(2))
+# root5 = TreeNode(1, TreeNode(2))
+# root6 = TreeNode(1, None, TreeNode(2))
 
-print(is_identical(root1, root2))
-print(is_identical(root3, root4))
+# print(is_identical(root1, root2))
+# print(is_identical(root3, root4))
