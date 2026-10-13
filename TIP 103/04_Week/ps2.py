@@ -1,11 +1,13 @@
 # 10//8/26 Binary Trees & BST
 from collections import deque
 
+
 class Node:
     def __init__(self, value, left=None, right=None):
         self.val = value
         self.left = left
         self.right = right
+
 
 # print_tree helper function
 def print_tree(root):
@@ -21,10 +23,11 @@ def print_tree(root):
             queue.append(node.right)
         else:
             result.append(None)
-    # gets rid of the None child for the leaf nodes 
+    # gets rid of the None child for the leaf nodes
     while result and result[-1] is None:
         print(result.pop())
     print(result)
+
 
 # Instructor demo
 
@@ -54,7 +57,7 @@ I:
 R:
 E:
 """
-'''
+"""
 class TreeNode:
     def __init__(self, value, left=None, right=None):
         self.val = value
@@ -76,7 +79,7 @@ ivy2 = TreeNode("Root", TreeNode("Node1", TreeNode("Leaf1")))
 
 print(right_vine(ivy1))
 print(right_vine(ivy2))
-'''
+"""
 """
 Set1, #2
 UNDERSTAND:
@@ -89,11 +92,13 @@ REVIEW:
 EVALUATE: 
 """
 
+
 class TreeNode:
     def __init__(self, value, left=None, right=None):
         self.val = value
         self.left = left
         self.right = right
+
 
 def right_vine(root):
     path = []
@@ -101,7 +106,7 @@ def right_vine(root):
     def traverse(node):
         if node is None:
             return
-    
+
         path.append(node.val)
         traverse(node.right)
 
@@ -109,9 +114,12 @@ def right_vine(root):
 
     return path
 
-ivy1 = TreeNode("Root", 
-                TreeNode("Node1", TreeNode("Leaf1")),
-                TreeNode("Node2", TreeNode("Leaf2"), TreeNode("Leaf3")))
+
+ivy1 = TreeNode(
+    "Root",
+    TreeNode("Node1", TreeNode("Leaf1")),
+    TreeNode("Node2", TreeNode("Leaf2"), TreeNode("Leaf3")),
+)
 ivy2 = TreeNode("Root", TreeNode("Node1", TreeNode("Leaf1")))
 
 # print(right_vine(ivy1))
@@ -132,50 +140,59 @@ rationale for why you believe your solution has the stated time and space comple
 the input tree is balanced when calculating time and space complexity.
 
 """
+
+
 def survey_tree(root):
     vals = []
+
     def post_order_traverse(node):
-        if node is None: # leaf node
-            return # node.val
-        
+        if node is None:  # leaf node
+            return  # node.val
+
         if node.left:
             post_order_traverse(node.left)
 
         if node.right:
             post_order_traverse(node.right)
-            
+
         vals.append(node.val)
 
     post_order_traverse(root)
     return vals
 
-magnolia = TreeNode("Root", 
-                TreeNode("Node1", TreeNode("Leaf1")),
-                        TreeNode("Node2", TreeNode("Leaf2"), TreeNode("Leaf3")))
+
+magnolia = TreeNode(
+    "Root",
+    TreeNode("Node1", TreeNode("Leaf1")),
+    TreeNode("Node2", TreeNode("Leaf2"), TreeNode("Leaf3")),
+)
 
 # print(survey_tree(magnolia))
 
+
 def sum_inventory(inventory):
-  counting_sum = 0
-  def post_order_traverse(node):
-    nonlocal counting_sum
-    if node is None: # leaf node
-        return # node.val
-    
-    if node.left:
-        post_order_traverse(node.left)
+    counting_sum = 0
 
-    if node.right:
-        post_order_traverse(node.right)
-        
-    counting_sum += node.val
+    def post_order_traverse(node):
+        nonlocal counting_sum
+        if node is None:  # leaf node
+            return  # node.val
 
-  post_order_traverse(inventory)
-  return counting_sum
+        if node.left:
+            post_order_traverse(node.left)
 
-inventory = TreeNode(40, 
-                    TreeNode(5, TreeNode(20)),
-                            TreeNode(10, TreeNode(1), TreeNode(30)))
+        if node.right:
+            post_order_traverse(node.right)
+
+        counting_sum += node.val
+
+    post_order_traverse(inventory)
+    return counting_sum
+
+
+inventory = TreeNode(
+    40, TreeNode(5, TreeNode(20)), TreeNode(10, TreeNode(1), TreeNode(30))
+)
 
 # print(sum_inventory(inventory))
 
@@ -200,14 +217,15 @@ the current value.
 REVIEW:
 EVALUATE: Time: O(N), Space: O(H) H: height of tree
 """
+
+
 def calculate_yield(root):
     if root.left is None and root.right is None:
         return root.val
-    
-    left = calculate_yield(root.left) 
+
+    left = calculate_yield(root.left)
     right = calculate_yield(root.right)
     return eval(str(left) + root.val + str(right))
-
 
 
 root = TreeNode("+")
@@ -236,18 +254,20 @@ REVIEW:
 EVALUATE: O(n) time; O(H) space
 """
 
+
 def get_most_specifics(taxonomy):
     if taxonomy.left is None and taxonomy.right is None:
         return [taxonomy.val]
-    
+
     return get_most_specifics(taxonomy.left) + get_most_specifics(taxonomy.right)
+
 
 # def get_most_specific(taxonomy):
 #     lst = []
 
 #     def DFS_preorder(root):
 #         if root is None:
-#             return 
+#             return
 #         if root.left is None and root.right is None:
 #             lst.append(root.val)
 #             return
@@ -261,13 +281,12 @@ def get_most_specifics(taxonomy):
 #     DFS_preorder(taxonomy)
 
 #     return lst
-    
 
 
 #            Plantae
 #           /       \
 #          /         \
-#         /           \ 
+#         /           \
 # Non-flowering     Flowering
 #    /      \       /        \
 # Mosses   Ferns Gymnosperms Angiosperms
@@ -275,10 +294,15 @@ def get_most_specifics(taxonomy):
 #                         Monocots  Dicots
 
 
-plant_taxonomy = TreeNode("Plantae", 
-                          TreeNode("Non-flowering", TreeNode("Mosses"), TreeNode("Ferns")),
-                                  TreeNode("Flowering", TreeNode("Gymnosperms"), 
-                                          TreeNode("Angiosperms", TreeNode("Monocots"), TreeNode("Dicots"))))
+plant_taxonomy = TreeNode(
+    "Plantae",
+    TreeNode("Non-flowering", TreeNode("Mosses"), TreeNode("Ferns")),
+    TreeNode(
+        "Flowering",
+        TreeNode("Gymnosperms"),
+        TreeNode("Angiosperms", TreeNode("Monocots"), TreeNode("Dicots")),
+    ),
+)
 
 print(get_most_specifics(plant_taxonomy))
 
@@ -293,6 +317,8 @@ PLAN: if node is > threshold, increment count
 REVIEW:
 EVALUATE:
 """
+
+
 def count_old_growth(root, threshold):
     if root is None:
         return 0
@@ -305,8 +331,6 @@ def count_old_growth(root, threshold):
 
     return left + right
 
-    
-
 
 #      100
 #      /  \
@@ -316,7 +340,9 @@ def count_old_growth(root, threshold):
 # 20    700  2600
 
 
-forest = TreeNode(100, TreeNode(1200, TreeNode(20)), TreeNode(1500, TreeNode(700), TreeNode(2600)))
+forest = TreeNode(
+    100, TreeNode(1200, TreeNode(20)), TreeNode(1500, TreeNode(700), TreeNode(2600))
+)
 
 # print(count_old_growth(forest, 1000))
 
@@ -334,6 +360,7 @@ REVIEW:
 EVALUATE: 
 """
 
+
 def is_identical(root1, root2):
     if root1 is None and root2 is None:
         return True
@@ -341,20 +368,22 @@ def is_identical(root1, root2):
     if root1 is None or root2 is None or root1.val != root2.val:
         return False
 
-    return is_identical(root1.left, root2.left) and is_identical(root1.right, root2.right)
-
+    return is_identical(root1.left, root2.left) and is_identical(
+        root1.right, root2.right
+    )
 
     #   1                1
     #  / \              / \
-    # 2   3            2   3  
+    # 2   3            2   3
+
 
 root1 = TreeNode(1, TreeNode(2), TreeNode(3))
 root2 = TreeNode(1, TreeNode(2), TreeNode(3))
 
 
-    #   1                1
-    #  /                  \
-    # 2                    2  
+#   1                1
+#  /                  \
+# 2                    2
 
 
 root3 = TreeNode(1, TreeNode(2))
